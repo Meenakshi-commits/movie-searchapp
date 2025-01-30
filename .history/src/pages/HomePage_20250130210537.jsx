@@ -48,7 +48,7 @@ const HomePage = () => {
     }
   };
 
-  const totalPages = Math.floor(totalResults / 10);
+  const totalPages = Math.fl(totalResults / 10);
 
   return (
     <div className="p-4">
