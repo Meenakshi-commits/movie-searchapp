@@ -12,18 +12,12 @@ const HomePage = () => {
   const [totalResults, setTotalResults] = useState(0);
 
   const handleSearch = async () => {
-    try {
-      const data = await fetchMovies(query, 1);
-      if (data.Response === "True") {
-        setMovies(data.Search);
-      } else {
-        setError(data.Error);
-      }
-    } catch (error) {
-      setError("Failed to load movies.");
-    }
+    setPage(1);
+    setMovies([]);
+    setError('');
+    await fetchMoviesData(1);
   };
-  
+
   const fetchMoviesData = async (page) => {
     setLoading(true);
     setError('');

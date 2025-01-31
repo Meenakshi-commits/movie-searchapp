@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom"; // ✅ Import useParams
 import { fetchMovieDetails } from "../services/omdbApi";
-import { useNavigate } from "react-router-dom";
 
 const MovieDetailsPage = () => {
-  const { movieId } = useParams(); 
+  const { movieId } = useParams(); // ✅ Get movieId from URL
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState("");
-  const navigate = useNavigate(); 
 
   useEffect(() => {
     const getMovieDetails = async () => {
@@ -29,7 +27,7 @@ const MovieDetailsPage = () => {
     };
 
     getMovieDetails();
-  }, [movieId]); 
+  }, [movieId]); // ✅ Runs when movieId changes
 
   if (error) return <p className="text-red-500">{error}</p>;
   if (!movie) return <p>Loading...</p>;
@@ -41,14 +39,7 @@ const MovieDetailsPage = () => {
       <p className="mt-2">Year: {movie.Year}</p>
       <p>Genre: {movie.Genre}</p>
       <p>Plot: {movie.Plot}</p>
-      <button
-        onClick={() => navigate(-1)} 
-        className="bg-gray-500 text-white px-4 py-2 rounded mb-4"
-      >
-        ⬅ Back
-      </button>
     </div>
-    
   );
 };
 

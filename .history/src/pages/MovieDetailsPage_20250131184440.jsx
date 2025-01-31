@@ -42,7 +42,7 @@ const MovieDetailsPage = () => {
       <p>Genre: {movie.Genre}</p>
       <p>Plot: {movie.Plot}</p>
       <button
-        onClick={() => navigate(-1)} 
+        onClick={() => navigate(-1)} // ✅ Go back to the previous page
         className="bg-gray-500 text-white px-4 py-2 rounded mb-4"
       >
         ⬅ Back

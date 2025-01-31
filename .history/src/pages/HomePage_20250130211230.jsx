@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { fetchMovies } from '../services/omdbApi';
 import MovieCard from '../components/MovieCard';
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+
 
 const HomePage = () => {
   const [query, setQuery] = useState('');
@@ -12,18 +12,12 @@ const HomePage = () => {
   const [totalResults, setTotalResults] = useState(0);
 
   const handleSearch = async () => {
-    try {
-      const data = await fetchMovies(query, 1);
-      if (data.Response === "True") {
-        setMovies(data.Search);
-      } else {
-        setError(data.Error);
-      }
-    } catch (error) {
-      setError("Failed to load movies.");
-    }
+    setPage(1);
+    setMovies([]);
+    setError('');
+    await fetchMoviesData(1);
   };
-  
+
   const fetchMoviesData = async (page) => {
     setLoading(true);
     setError('');
@@ -87,28 +81,26 @@ const HomePage = () => {
       {loading && <p>Loading...</p>}
 
       <div className="flex items-center justify-center gap-4 mt-4">
-  <button
-    onClick={handlePreviousPage}
-    disabled={page === 1 || loading}
-    className={`p-2 flex items-center rounded ${page === 1 || loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
-  >
-    <AiOutlineLeft className="mr-2" />
-    Previous
-  </button>
+        <button
+          onClick={handlePreviousPage}
+          disabled={page === 1 || loading}
+          className={`p-2 rounded ${page === 1 ? 'bg-gray-400' : 'bg-blue-500 text-white'}`}
+        >
+          Previous
+        </button>
 
-  <p>
-    Page {page} of {totalPages || 1}
-  </p>
+        <p>
+          Page {page} of {totalPages || 1}
+        </p>
 
-  <button
-    onClick={handleNextPage}
-    disabled={page >= totalPages || loading}
-    className={`p-2 flex items-center rounded ${page >= totalPages || loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-500 text-white'}`}
-  >
-    Next
-    <AiOutlineRight className="ml-2" />
-  </button>
-</div>
+        <button
+          onClick={handleNextPage}
+          disabled={page >= totalPages || loading}
+          className={`p-2 rounded ${page >= totalPages ? 'bg-gray-400' : 'bg-blue-500 text-white'}`}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

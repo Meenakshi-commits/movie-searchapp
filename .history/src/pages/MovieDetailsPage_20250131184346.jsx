@@ -41,14 +41,7 @@ const MovieDetailsPage = () => {
       <p className="mt-2">Year: {movie.Year}</p>
       <p>Genre: {movie.Genre}</p>
       <p>Plot: {movie.Plot}</p>
-      <button
-        onClick={() => navigate(-1)} 
-        className="bg-gray-500 text-white px-4 py-2 rounded mb-4"
-      >
-        ⬅ Back
-      </button>
     </div>
-    
   );
 };
 

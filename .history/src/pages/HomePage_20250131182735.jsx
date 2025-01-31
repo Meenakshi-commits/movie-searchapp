@@ -13,7 +13,7 @@ const HomePage = () => {
 
   const handleSearch = async () => {
     try {
-      const data = await fetchMovies(query, 1);
+      const data = await fetchMovies(query, 1); // Fetch first page of results
       if (data.Response === "True") {
         setMovies(data.Search);
       } else {

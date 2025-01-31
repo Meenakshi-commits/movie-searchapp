@@ -19,7 +19,7 @@ const HomePage = () => {
       } else {
         setError(data.Error);
       }
-    } catch (error) {
+    } catch () {
       setError("Failed to load movies.");
     }
   };
