@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { fetchMovies } from '../services/omdbApi';
-import MovieCard from '../components/MovieCard';
+import MovieCard from '../components/MovieCard.jsx';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 const HomePage = () => {
